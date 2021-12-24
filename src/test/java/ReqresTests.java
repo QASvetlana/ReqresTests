@@ -1,12 +1,11 @@
 import io.restassured.http.ContentType;
 
-import static io.restassured.RestAssured.get;
-
 import org.junit.jupiter.api.Test;
 
-import static io.restassured.RestAssured.given;
+import static io.restassured.RestAssured.*;
+
 import static org.hamcrest.Matchers.is;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+
 
 public class ReqresTests {
     @Test
@@ -65,12 +64,17 @@ public class ReqresTests {
 
 
     @Test
-    void checkSingleUser() {
-        Integer response =
-                get("https://reqres.in/api/users/2")
-                        .then()
-                        .extract().path("Michael");
+    public void singleUserTest() {
 
-
+        when()
+                .get("https://reqres.in/api/users/2")
+                .then()
+                .body("data.email", is("janet.weaver@reqres.in"))
+                .body("data.id", is(2))
+                .body("data.first_name", is("Janet"))
+                .body("data.last_name", is("Weaver"));
     }
 }
+
+
+
