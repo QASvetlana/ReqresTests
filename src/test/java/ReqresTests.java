@@ -64,7 +64,7 @@ public class ReqresTests {
 
 
     @Test
-    public void singleUserTest() {
+    public void checkSingleUser() {
 
         when()
                 .get("https://reqres.in/api/users/2")
